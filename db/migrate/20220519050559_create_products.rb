@@ -1,6 +1,8 @@
 class CreateProducts < ActiveRecord::Migration[6.1]
   def change
     create_table :products do |t|
+      t.references :user, null: false, foreign_key: true
+      t.references :categories, null: false, foreign_key: true
       t.boolean :sold
       t.string :title
       t.string :brand
