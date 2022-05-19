@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_19_051918) do
+ActiveRecord::Schema.define(version: 2022_05_19_052400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,17 @@ ActiveRecord::Schema.define(version: 2022_05_19_051918) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.integer "total_balance"
+    t.string "purchase_order"
+    t.string "payment_method"
+    t.date "payment_date"
+    t.bigint "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_payments_on_order_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "categories_id", null: false
@@ -60,6 +71,14 @@ ActiveRecord::Schema.define(version: 2022_05_19_051918) do
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
+  create_table "shippings", force: :cascade do |t|
+    t.date "pickup"
+    t.string "courier"
+    t.integer "days_to_ship"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -75,6 +94,7 @@ ActiveRecord::Schema.define(version: 2022_05_19_051918) do
   add_foreign_key "line_item", "orders"
   add_foreign_key "line_item", "products"
   add_foreign_key "orders", "users"
+  add_foreign_key "payments", "orders"
   add_foreign_key "products", "categories", column: "categories_id"
   add_foreign_key "products", "users"
 end
