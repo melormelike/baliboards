@@ -6,7 +6,7 @@ class CreatePayments < ActiveRecord::Migration[6.1]
       t.string :payment_method
       t.date :payment_date
       t.references :order, null: false, foreign_key: true
-
+      t.references :shipping, null: false, foreign_key: true
       t.timestamps
     end
   end
