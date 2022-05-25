@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(version: 2022_05_19_052402) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "categories_id"
+    t.bigint "user_id", null: false
+    t.bigint "categories_id", null: false
     t.boolean "sold"
     t.string "title"
     t.string "brand"
@@ -100,4 +100,5 @@ ActiveRecord::Schema.define(version: 2022_05_19_052402) do
   add_foreign_key "payments", "shippings"
   add_foreign_key "products", "categories", column: "categories_id"
   add_foreign_key "products", "users"
+
 end

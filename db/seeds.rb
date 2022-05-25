@@ -32,7 +32,7 @@ puts "Created #{User.count} users"
 category_1 = Category.create!(surfboard: true, fins: false, leash: false, covers: false)
 # Product seeds
 
-product_1 = Product.create!(user_id: melike.id, categories_id: Category.first, sold: false, title: "Selling my beloved board", brand:"Suns", description: "Used only a year. No dings at all.", type: "", quantity: 1, length: "9.0", condition: "like brand new", weight: "21", price: 3000000)
+product_1 = Product.create!(user_id: melike.id, categories_id: category_1.id, sold: false, title: "Selling my beloved board", brand:"Suns", description: "Used only a year. No dings at all.", type: "", quantity: 1, length: "9.0", condition: "like brand new", weight: "21", price: 3000000)
 
 file_1 = File.open(Rails.root.join("app/assets/images/nathan-hero-banner.jpg"))
 product_1.photos.attach(io: file_1, filename: 'nes.png', content_type: 'image/png')
