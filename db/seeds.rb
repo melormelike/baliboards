@@ -20,23 +20,21 @@ puts "Destroying all data"
 Product.destroy_all
 User.destroy_all
 
-# User seed to test geocode
+# User seeds
 puts "Creating users"
 melike = User.create!(email: "melike@gmail.com", password: "123456")
 pooja = User.create!(email: "pooja@gmail.com", password: "123456")
 shania = User.create!(email: "shania@gmail.com", password: "123456")
 puts "Created #{User.count} users"
 
-# Incident seed to test geocode
 
-# product_1 = Product.create!(user: User.first, category: "Item Stolen", authorities: true, address: "Canggu, Bali", date: Date.parse('23 October 2022'), description: "Someone stole my phone while I was riding my scooter. The phone was in the pocket of bike. It was dark so I didn't see how they look like.", time: "20:00")
+#category seeds
+category_1 = Category.create!(surfboard: true, fins: false, leash: false, covers: false)
+# Product seeds
 
-# file_1 = File.open(Rails.root.join("app/assets/images/pin.jpg"))
-# file_2 = File.open(Rails.root.join("app/assets/images/pin.jpg"))
-# incident_1.photos.attach(io: file_1, filename: 'nes.png', content_type: 'image/png')
-# incident_1.photos.attach(io: file_2, filename: 'nes.png', content_type: 'image/png')
-# file_3 = File.open(Rails.root.join("app/assets/images/yellowpin.jpg"))
-# file_4 = File.open(Rails.root.join("app/assets/images/yellowpin.jpg"))
-# incident_2.photos.attach(io: file_3, filename:'nes.png', content_type: 'image/png')
-# incident_2.photos.attach(io: file_4, filename:'nes.png', content_type: 'image/png')
-# puts "Created #{Product.count} incidents"
+product_1 = Product.create!(user_id: melike.id, categories_id: Category.first, sold: false, title: "Selling my beloved board", brand:"Suns", description: "Used only a year. No dings at all.", type: "", quantity: 1, length: "9.0", condition: "like brand new", weight: "21", price: 3000000)
+
+file_1 = File.open(Rails.root.join("app/assets/images/nathan-hero-banner.jpg"))
+product_1.photos.attach(io: file_1, filename: 'nes.png', content_type: 'image/png')
+
+puts "Created #{Product.count} incidents"
