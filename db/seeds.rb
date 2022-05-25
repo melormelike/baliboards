@@ -37,4 +37,4 @@ product_1 = Product.create!(user_id: melike.id, categories_id: category_1.id, so
 file_1 = File.open(Rails.root.join("app/assets/images/nathan-hero-banner.jpg"))
 product_1.photos.attach(io: file_1, filename: 'nes.png', content_type: 'image/png')
 
-puts "Created #{Product.count} incidents"
+puts "Created #{Product.count} products"
